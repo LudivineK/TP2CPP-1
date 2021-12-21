@@ -12,18 +12,20 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
+
 //------------------------------------------------------------- Constantes
+const int TAILLEMAX = 2;
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
 // Rôle de la classe <ListeTrajets>
-//  Classe permettant de définir une structure de données de type liste chaînée.
+//  Classe permettant de définir une structure de données de type tableau.
 //  Cette classe stocke des éléments de type Trajet.
 /* Fonctionnement général :
-  Cette classe est aussi un noeud de la liste chaînée. Chaque objet de type ListeTrajets
-  contient un pointeur vers un Trajet et un pointeur vers une ListeTrajets, qui est le prochain
-  noeud après celui-ci. De ce fait, nous avons utilisé la récursivité pour traiter quelques méthodes.
+  Cette classe stocke des Trajets dans un tableau. 
+  Il existe une méthode pour rajouter de l'espace au tableau dans le cas où 
+  il n'y a plus de place. 
 */
 //------------------------------------------------------------------------
 
@@ -33,7 +35,20 @@ class ListeTrajets
 
 public:
   //----------------------------------------------------- Méthodes publiques
-  unsigned int getTaille();
+  
+  void reallouer();
+  // Mode d'emploi :
+  //  Donne la taille de la liste (nombre de trajets qui la composent).
+  // Contrat :
+  //  Aucun.
+
+  int getTaille() const;
+  // Mode d'emploi :
+  //  Donne la taille de la liste (nombre de trajets qui la composent).
+  // Contrat :
+  //  Aucun.
+
+  int getTailleMax() const;
   // Mode d'emploi :
   //  Donne la taille de la liste (nombre de trajets qui la composent).
   // Contrat :
@@ -51,38 +66,27 @@ public:
   // Contrat :
   //  Aucun.
 
-  Trajet *getElement(int index);
+  Trajet *getElement(int i) const;
   // Mode d'emploi :
-  //  Donne l'élément situé à la position `index` de la liste.
+  //  Donne l'élément situé à la position i du tableau.
   // Contrat :
   //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
 
-  virtual void supprimerTrajet(uint index);
+  virtual void supprimerTrajet(int i);
   // Mode d'emploi :
-  //  Supprime le trajet situé à la position `index` de la liste.
-  // Contrat :
-  //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
-
-  void supprimerTrajetRecherche(uint index);
-  // Mode d'emploi :
-  //  Supprime le trajet situé à la position `index` de la liste. Utilisée pour la recherche avancée.
+  //  Supprime le trajet situé à la position i du tableau.
   // Contrat :
   //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
   
-  void vider();
-  // Mode d'emploi :
-  /*
-  Cette méthode permet de ne plus faire pointer les ListeTrajets sur des Trajets.
-  Cette méthode est en fait utilisée dans le cas de Catalogue::rechercherAvancée,
-  qui utilise une ListeTrajets temporaire que l'on souhaite delete à la fin de
-  l'algorithme, sans supprimer nos Trajet dans le tas.
-  */
-  // Contrat :
-  //  Cette méthode ne devrait être utilisée QUE dans le cas décrit ci-dessus, sous peine d'avoir des pertes de mémoire.
-
   //-------------------------------------------- Constructeurs - destructeur
 
   ListeTrajets();
+  // Mode d'emploi :
+  //  Crée un objet ListeTrajets vierge.
+  // Contrat :
+  //  Aucun.
+
+  ListeTrajets(const ListeTrajets &uneListeTrajets);
   // Mode d'emploi :
   //  Crée un objet ListeTrajets vierge.
   // Contrat :
@@ -100,9 +104,10 @@ protected:
   //----------------------------------------------------- Méthodes protégées
 
   //----------------------------------------------------- Attributs protégés
-  Trajet *trajet;
-  unsigned int taille;
-  ListeTrajets *trajetSuivant;
+  
+  int tailleMax;
+  int taille;
+  Trajet **tab; // Tableau de pointeurs de Trajet
 };
 
 //-------------------------------- Autres définitions dépendantes de <ListeTrajets>

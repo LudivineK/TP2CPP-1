@@ -24,6 +24,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+
 void Trajet::afficherTrajet() const
 {
     cout << "De " << depart << " à " << arrivee << endl;
@@ -31,18 +32,20 @@ void Trajet::afficherTrajet() const
 
 bool Trajet::estEgal(Trajet *t)
 {
-    return (strcmp(depart, t->depart) == 0 && strcmp(arrivee, t->arrivee) == 0); 
+    if(this->getDepart() == t->getDepart())
+        return true;
+    return false;
 }
 
 std::string Trajet::getType() {
     return "Trajet";
 }
 
-char const *Trajet::getDepart() const
+std::string const Trajet::getDepart() const
 {
     return depart;
 }
-char const *Trajet::getArrivee() const
+std::string const Trajet::getArrivee() const
 {
     return arrivee;
 }
@@ -50,13 +53,11 @@ const std::string Trajet::writeFile() const {
     return std::string(depart) +","+std::string(arrivee);
 }
 
-
-
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Trajet::Trajet(const char *depart$, const char *arrivee$)
+Trajet::Trajet(std::string villeDepart, std::string villeArrivee)
 // Algorithme :
 //
 {
@@ -64,12 +65,18 @@ Trajet::Trajet(const char *depart$, const char *arrivee$)
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
 
-    depart = new char[strlen(depart$) + 1];
-    arrivee = new char[strlen(arrivee$) + 1];
-    strcpy(depart, depart$);
-    strcpy(arrivee, arrivee$);
+    depart = villeDepart;
+    arrivee = villeArrivee;
 
 } //----- Fin de Trajet
+
+Trajet::Trajet(const Trajet &unTrajet) {
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <Trajet>" << endl;
+    #endif
+    depart = unTrajet.getDepart();
+    arrivee = unTrajet.getArrivee();
+}
 
 Trajet::~Trajet()
 // Algorithme :
@@ -78,8 +85,6 @@ Trajet::~Trajet()
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
-    delete[] depart;
-    delete[] arrivee;
 } //----- Fin de ~Trajet
 
 //------------------------------------------------------------------ PRIVE

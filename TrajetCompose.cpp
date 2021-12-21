@@ -29,7 +29,7 @@ void TrajetCompose::afficherTrajet() const
     cout << "Trajet composé ";
     Trajet::afficherTrajet();
 
-    for (uint i = 0; i < liste->getTaille(); i++)
+    for (int i = 0; i < liste->getTaille(); i++)
     {
         cout << "  - ";
         liste->getElement(i)->afficherTrajet();
@@ -54,7 +54,7 @@ bool TrajetCompose::estEgal( Trajet* t ){
         if (ts->getArrivee() != arrivee || ts->getDepart() != depart) {
             return false;
         }
-        for(uint i=0;i<liste->getTaille();i++) {
+        for(int i=0;i<liste->getTaille();i++) {
             if(!liste->getElement(i)->estEgal(t)) return false;
         }
         return true;
@@ -64,7 +64,7 @@ bool TrajetCompose::estEgal( Trajet* t ){
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetCompose::TrajetCompose(const char *depart, const char *arrivee) : Trajet(depart, arrivee)
+TrajetCompose::TrajetCompose(std::string depart, std::string arrivee) : Trajet(depart, arrivee)
 // Algorithme :
 //
 {

@@ -26,7 +26,7 @@ const unsigned int TAILLE_MAX_NOM_VILLE = 40 + 1;
 //----------------------------------------------------- Méthodes publiques
 void Menu::afficherMenu()
 {
-    char *choix = new char[2];
+    string choix;
     do
     {
         cout << "-------------- MENU --------------" << endl;
@@ -36,46 +36,43 @@ void Menu::afficherMenu()
         cout << "4 : Supprimer un trajet" << endl;
         cout << "Veuillez entrer votre choix (q pour quitter) : ";
         cin >> choix;
-        while (strcmp(choix, "1") != 0 && strcmp(choix, "2") != 0 && strcmp(choix, "3") != 0 && strcmp(choix, "4") != 0 && strcmp(choix, "q") != 0)
+        while (choix.compare("1") != 0 && choix.compare("2") != 0 && choix.compare("3") != 0 && choix.compare("4") != 0 && choix.compare("q") != 0)
         {
             cout << "Choix incorrect. Choix possibles : 1, 2, 3, 4, q. Choix : ";
             cin >> choix;
         }
-        if (strcmp(choix, "1") == 0)
+        if (choix.compare("1") == 0)
         {
             ajouterTrajet();
         }
-        else if (strcmp(choix, "2") == 0)
+        else if (choix.compare("2") == 0)
         {
-            rechercher();
+            //rechercher();
         }
-        else if (strcmp(choix, "3") == 0)
+        else if (choix.compare("3") == 0)
         {
             afficherCatalogue();
         }
-        else if (strcmp(choix, "4") == 0)
+        else if (choix.compare("4") == 0)
         {
             supprimerTrajet();
         }
 
-    } while (strcmp(choix, "q") != 0);
-    delete[] choix;
+    } while (choix.compare("q") != 0);
 }
-TrajetSimple *Menu::saisirTS(const char *ville_depart)
+
+TrajetSimple *Menu::saisirTS(std::string ville_depart)
 {
-    char *depart, *arrivee, *moyenTransport;
-    depart = new char[TAILLE_MAX_NOM_VILLE];
-    arrivee = new char[TAILLE_MAX_NOM_VILLE];
-    moyenTransport = new char[TAILLE_MAX_NOM_VILLE];
+    std::string depart ="", arrivee="", moyenTransport="";
     cout << ">> SAISIE D'UN TRAJET SIMPLE" << endl;
     cout << "Ville de départ : ";
-    if (ville_depart == nullptr)
+    if (ville_depart.compare("") == 0)
     {
         cin >> depart;
     }
     else
     {
-        strcpy(depart, ville_depart);
+        depart = ville_depart;
         cout << ville_depart << endl;
     }
     cout << "Ville d'arrivée : ";
@@ -83,49 +80,38 @@ TrajetSimple *Menu::saisirTS(const char *ville_depart)
     cout << "Moyen de transport : ";
     cin >> moyenTransport;
     TrajetSimple *t = new TrajetSimple(depart, arrivee, moyenTransport);
-    delete[] depart;
-    delete[] arrivee;
-    delete[] moyenTransport;
     return t;
 }
+
 TrajetCompose *Menu::saisirTC()
 {
-
-    char *depart = new char[TAILLE_MAX_NOM_VILLE],
-         *arrivee = new char[TAILLE_MAX_NOM_VILLE],
-         *moyenTransport = new char[TAILLE_MAX_NOM_VILLE],
-         *choix = new char[2],
-         *derniereVille;
+    std::string depart, arrivee, mTransport, derniereVille;
+    
     TrajetCompose *trajet;
     TrajetSimple *ts;
+
     int nbTrajets = 1;
+
     cout << ">> SAISIE D'UN TRAJET COMPOSE" << endl;
     cout << "Ville de départ : ";
     cin >> depart;
     cout << "Ville d'arrivée : ";
     cin >> arrivee;
     trajet = new TrajetCompose(depart, arrivee);
-    derniereVille = new char[TAILLE_MAX_NOM_VILLE];
-    strcpy(derniereVille, depart);
+    derniereVille = depart;
     cout << "Saisie des sous-trajets (jusqu'à arriver à " << arrivee << ") : " << endl;
     do
     {
         cout << "> Veuillez saisir les informations du sous-trajet " << nbTrajets << endl;
         ts = saisirTS(derniereVille);
-        strcpy(derniereVille, ts->getArrivee());
+        derniereVille = ts->getArrivee();
         trajet->ajouterTrajet(ts);
         nbTrajets++;
-        /*cout << "Souhaitez-vous ajouter un autre sous-trajet ? (O/n) ";
-        cin >> choix;*/
-    } while (/*strcmp(choix, "n") != 0*/ strcmp(derniereVille, arrivee) != 0);
-    delete[] depart;
-    delete[] arrivee;
-    delete[] moyenTransport;
-    delete[] choix;
-    delete[] derniereVille;
+    } while (derniereVille != arrivee);
     return trajet;
 }
-void Menu::rechercher()
+
+/*void Menu::rechercher()
 {
     char *choix = new char[2],
          *depart = new char[TAILLE_MAX_NOM_VILLE],
@@ -153,22 +139,24 @@ void Menu::rechercher()
     delete[] depart;
     delete[] arrivee;
     delete[] choix;
-}
+}*/
+
 void Menu::afficherCatalogue()
 {
     c->afficher();
 }
 void Menu::ajouterTrajet()
 {
-    char *choix = new char[2];
+    string choix;
+
     cout << "Souhaitez-vous ajouter un trajet simple (s) ou composé (c) ? (s/c) Choix : ";
     cin >> choix;
-    while (strcmp(choix, "s") != 0 && strcmp(choix, "c") != 0)
+    while (choix.compare("s") && choix.compare("c"))
     {
         cout << "Choix incorrect. Choix possibles : s, c. Choix : ";
         cin >> choix;
     }
-    if (strcmp(choix, "s") == 0)
+    if (choix.compare("s") == 0)
     {
         c->ajouterTrajet(saisirTS());
     }
@@ -176,7 +164,6 @@ void Menu::ajouterTrajet()
     {
         c->ajouterTrajet(saisirTC());
     }
-    delete[] choix;
 }
 
 void Menu::supprimerTrajet()
@@ -191,7 +178,7 @@ void Menu::supprimerTrajet()
     int i;
     cout << "Entrez le numéro du trajet à supprimer : ";
     cin >> i;
-    if (i >= 1 && i <= c->getTaille())
+    if (i > 0 && i < c->getTaille() + 1)
     {
         c->supprimerTrajet(i - 1);
         cout << "Le trajet a été supprimé du catalogue" << endl;

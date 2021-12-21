@@ -28,18 +28,20 @@ void Catalogue::ajouterTrajet(Trajet *t)
 {
     liste->ajouter(t);
 }
+
 void Catalogue::afficher()
 {
     cout << "----------------" << endl;
     cout << "Le catalogue contient " << liste->getTaille() << " trajets" << endl;
-    for (uint i = 0; i < liste->getTaille(); i++)
+    for (int i = 0; i < liste->getTaille(); i++)
     {
         cout << "Trajet " << i + 1 << " : ";
         liste->getElement(i)->afficherTrajet();
     }
     cout << "----------------" << endl;
 }
-void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
+
+/*void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
 {
     cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << endl;
     // ListeTrajets* l = new ListeTrajets();
@@ -54,6 +56,7 @@ void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
     }
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
 }
+
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
 {
     cout << "Recherche Avancee de trajets de " << depart << " vers " << arrivee << "..." << endl;
@@ -63,6 +66,7 @@ void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
     dejaVisite->vider();
     delete dejaVisite;
 }
+
 int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite)
 {
     // Algorithme
@@ -109,11 +113,11 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
         }
     }
     return nbTrajets;
-}
+}*/
 
-void Catalogue::supprimerTrajet(int index)
+void Catalogue::supprimerTrajet(int i)
 {
-    liste->supprimerTrajet(index);
+    liste->supprimerTrajet(i);
 }
 
 int Catalogue::getTaille()

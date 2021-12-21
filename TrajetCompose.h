@@ -58,7 +58,13 @@ public:
 
     //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetCompose(const char *depart, const char *arrivee);
+    TrajetCompose(std::string depart, std::string arrivee);
+    // Mode d'emploi :
+    //  Crée un trajet composé à partir des paramètres : depart (ville de départ), arrivee (ville d'arrivée).
+    // Contrat :
+    //  Aucun.
+
+    TrajetCompose(const TrajetCompose &unTrajetCompose);
     // Mode d'emploi :
     //  Crée un trajet composé à partir des paramètres : depart (ville de départ), arrivee (ville d'arrivée).
     // Contrat :

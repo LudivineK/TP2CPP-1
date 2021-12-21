@@ -35,8 +35,8 @@ public:
     //  Affiche le menu. Cette méthode doit être appelée pour utiliser le Menu dans la console.
     // Contrat :
     //  Aucun.
-
-    TrajetSimple *saisirTS(const char *ville_depart = nullptr);
+    
+    TrajetSimple *saisirTS(const std::string villeDepart = "");
     // Mode d'emploi :
     //  Permet de saisir un trajet simple dans la console.
     //  Le paramètre ville_depart permet de préciser une ville de départ prédéfinie, qui ne sera
@@ -55,7 +55,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    void rechercher();
+    //void rechercher();
     // Mode d'emploi :
     //  Demande à l'utilisateur quel type de recherche il souhaite effectuer (simple ou avancée) et
     //  lui demande les paramètres de la recherche (ville départ, ville arrivée) avant d'effectuer la

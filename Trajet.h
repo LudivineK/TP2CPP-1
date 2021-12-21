@@ -44,13 +44,13 @@ public:
     // Contrat :
     //  Le paramètre `t` ne doit pas pointer le même trajet que `this`.
 
-    char const *getDepart() const;
+    std::string const getDepart() const;
     // Mode d'emploi :
     //  Donne la ville de départ du trajet.
     // Contrat :
     //  Aucun.
 
-    char const *getArrivee() const;
+    std::string const getArrivee() const;
     // Mode d'emploi :
     //  Donne la ville d'arrivée du trajet.
     // Contrat :
@@ -68,7 +68,13 @@ public:
 
     //-------------------------------------------- Constructeurs - destructeur
 
-    Trajet(const char *depart, const char *arrivee);
+    Trajet(std::string depart, std::string arrivee);
+    // Mode d'emploi :
+    //  Crée un trajet à partir des paramètre : depart (ville de départ), arrivee (ville d'arrivée).
+    // Contrat :
+    //  La ville de départ et d'arrivée ne devraient pas être les mêmes.
+
+    Trajet(const Trajet &unTrajet);
     // Mode d'emploi :
     //  Crée un trajet à partir des paramètre : depart (ville de départ), arrivee (ville d'arrivée).
     // Contrat :
@@ -86,8 +92,8 @@ protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    char *depart;
-    char *arrivee;
+    std::string depart;
+    std::string arrivee;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>
