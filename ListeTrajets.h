@@ -53,7 +53,13 @@ public:
   //  Donne la taille de la liste (nombre de trajets qui la composent).
   // Contrat :
   //  Aucun.
-  
+
+  ListeTrajets *getListe() const;
+  // Mode d'emploi :
+  //  Donne la taille de la liste (nombre de trajets qui la composent).
+  // Contrat :
+  //  Aucun.
+
   virtual bool ajouter(Trajet *);
   // Mode d'emploi :
   //  Permet d'ajouter un trajet passé en paramètre à la liste.

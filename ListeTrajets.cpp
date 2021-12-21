@@ -82,9 +82,7 @@ void ListeTrajets::supprimerTrajet(int i)
 // supprimer le premier trajet, ce sera le trajet à l'emplacement tab[0])
 // et on déplace les trajets de i à taille - 1 de une case vers la gauche
 {
-  cout << "Coucou" << endl;
   delete tab[i];
-  cout << "Coucou2" << endl;
 
   if(i > 1)
     for(int j = i; j < taille; j++) 

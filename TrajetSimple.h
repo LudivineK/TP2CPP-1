@@ -58,6 +58,12 @@ public:
     // Contrat :
     //  Les villes de départ et d'arrivée ne devraient pas être les mêmes.
 
+    TrajetSimple(TrajetSimple &unTrajetSimple);
+    // Mode d'emploi :
+    //  Crée un trajet à partir des paramètres : ville départ, ville arrivée, moyen de transport.
+    // Contrat :
+    //  Les villes de départ et d'arrivée ne devraient pas être les mêmes.
+
     virtual ~TrajetSimple();
     // Mode d'emploi :
     //  Détuit le trajet.

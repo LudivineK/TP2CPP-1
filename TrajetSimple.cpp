@@ -64,6 +64,17 @@ TrajetSimple::TrajetSimple(const std::string depart, const std::string arrivee, 
 
 } //----- Fin de TrajetSimple
 
+TrajetSimple::TrajetSimple(TrajetSimple &unTrajetSimple) : Trajet(unTrajetSimple)
+// Algorithme :
+//
+{
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+    #endif
+
+    transport = unTrajetSimple.getTransport();
+}
+
 TrajetSimple::~TrajetSimple()
 // Algorithme :
 //

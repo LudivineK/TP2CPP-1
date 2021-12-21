@@ -45,8 +45,12 @@ public:
     //  étapes donc A->C puis C->D, c'est incohérent et cela ne doit pas arriver.
 
     std::string getType();
+    // Mode d'emploi :
+    //  Retourne "TrajetCompose".
+    // Contrat :
+    //  Aucun.
 
-    bool estEgal ( Trajet *t );
+    bool estEgal (Trajet *t);
     // Mode d'emploi :
     //  Permet de tester si deux trajets sont égaux, à partir des informations telles que
     //  les villes d'arrivée et de départ, ainsi que toutes les étapes intermédiaires.
@@ -54,6 +58,9 @@ public:
     //  moyens de transport.
     // Contrat :
     //  Le paramètre `t` ne doit pas pointer le même trajet que `this`.
+
+    ListeTrajets getLT() const;
+
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
