@@ -47,7 +47,7 @@ void Menu::afficherMenu()
         }
         else if (choix.compare("2") == 0)
         {
-            //rechercher();
+            rechercher();
         }
         else if (choix.compare("3") == 0)
         {
@@ -111,14 +111,12 @@ TrajetCompose *Menu::saisirTC()
     return trajet;
 }
 
-/*void Menu::rechercher()
+void Menu::rechercher()
 {
-    char *choix = new char[2],
-         *depart = new char[TAILLE_MAX_NOM_VILLE],
-         *arrivee = new char[TAILLE_MAX_NOM_VILLE];
+    string choix = "", depart = "", arrivee = "";
     cout << "Quelle recherche souhaitez-vous effectuer ? Simple ou Avancée ? (s/a) ";
     cin >> choix;
-    while (strcmp(choix, "a") != 0 && strcmp(choix, "s") != 0)
+    while (choix.compare("a") != 0 && choix.compare("s") != 0)
     {
         cout << "Choix incorrect. Choix possibles : a, s. Choix : ";
         cin >> choix;
@@ -128,18 +126,16 @@ TrajetCompose *Menu::saisirTC()
     cout << "Ville d'arrivée : ";
     cin >> arrivee;
 
-    if (strcmp(choix, "s") == 0)
+    if(choix.compare("s") == 0)
     {
         c->rechercheSimple(depart, arrivee);
     }
     else
     {
-        c->rechercheAvancee(depart, arrivee);
+        cout << "Pas pour le moment" << endl;
+        // c->rechercheAvancee(depart, arrivee);
     }
-    delete[] depart;
-    delete[] arrivee;
-    delete[] choix;
-}*/
+}
 
 void Menu::afficherCatalogue()
 {

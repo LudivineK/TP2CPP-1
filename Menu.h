@@ -55,7 +55,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    //void rechercher();
+    void rechercher();
     // Mode d'emploi :
     //  Demande à l'utilisateur quel type de recherche il souhaite effectuer (simple ou avancée) et
     //  lui demande les paramètres de la recherche (ville départ, ville arrivée) avant d'effectuer la

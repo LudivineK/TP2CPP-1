@@ -57,7 +57,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    void rechercheSimple(const char *depart, const char *arrivee);
+    void rechercheSimple(std::string depart, std::string arrivee);
     // Mode d'emploi :
     //  Effectue une recherche simple sur le catalogue, en fonction des paramètres.
     //  `depart` est le lieu de départ, `arrivee` est le lieu d'arrivée. On recherche les

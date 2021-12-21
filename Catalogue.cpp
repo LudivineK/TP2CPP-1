@@ -41,22 +41,26 @@ void Catalogue::afficher()
     cout << "----------------" << endl;
 }
 
-/*void Catalogue::rechercheSimple(const char *depart, const char *arrivee)
+void Catalogue::rechercheSimple(std::string depart, std::string arrivee)
 {
+    cout << "---------" << endl;
     cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << endl;
-    // ListeTrajets* l = new ListeTrajets();
+
     int nb = 0;
-    for (uint i = 0; i < liste->getTaille(); i++)
+    for (int i = 0; i < liste->getTaille(); i++)
     {
-        if (strcmp(liste->getElement(i)->getDepart(), depart) == 0 && strcmp(liste->getElement(i)->getArrivee(), arrivee) == 0)
+        if (liste->getElement(i)->getDepart().compare(depart) == 0 && liste->getElement(i)->getArrivee().compare(arrivee) == 0)
         {
+            cout << "Trajet " << nb + 1 << " : ";
             liste->getElement(i)->afficherTrajet();
             nb++;
         }
     }
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
+    cout << "---------" << endl;
 }
 
+/*
 void Catalogue::rechercheAvancee(const char *depart, const char *arrivee)
 {
     cout << "Recherche Avancee de trajets de " << depart << " vers " << arrivee << "..." << endl;
