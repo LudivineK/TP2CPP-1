@@ -31,13 +31,12 @@ void ListeTrajets::reallouer() {
   /* On fait pointer chaque case du tableau temp sur l'instance de Trajet
   pointée par tab au même indice */
 
-  for (int i = 0; i < this->taille; i++) {
+  for (int i = 0; i < this->getTaille(); i++) 
 			temp[i] = tab[i];
-		}
 
 		// Définition du reste des pointeurs à NULL
 
-		for (int i = taille; i < tailleMax * 2; i++) {
+		for (int i = this->getTaille(); i < this->getTailleMax() * 2; i++) {
 			temp[i] = NULL;
 		}
 
@@ -52,7 +51,6 @@ void ListeTrajets::reallouer() {
 		// On fait pointer l'attribut tab vers temp.
 
 		tab = temp;
-    delete[] temp;
 }
 
 bool ListeTrajets::ajouter(Trajet *unTrajet)
@@ -76,17 +74,16 @@ void ListeTrajets::afficher() {
 		}
 	} // fin afficher
 
-void ListeTrajets::supprimerTrajet(int i)
+void ListeTrajets::supprimerTrajet(int j)
 // Algorithme
 // On supprime le trajet à l'emplacement i - 1 (si l'utilisateur veut
 // supprimer le premier trajet, ce sera le trajet à l'emplacement tab[0])
 // et on déplace les trajets de i à taille - 1 de une case vers la gauche
 {
-  delete tab[i];
+  delete tab[j];
 
-  if(i > 1)
-    for(int j = i; j < taille; j++) 
-      tab[j - 1] = tab[j];
+  for(int i = j; i < this->getTaille() - 1; i++) 
+    tab[i] = tab[i + 1];
 
   tab[taille - 1] = NULL;
   taille--;
