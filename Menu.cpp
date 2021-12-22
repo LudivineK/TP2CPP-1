@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 #include <cstring>
 #include <string>
 //------------------------------------------------------ Include personnel
@@ -34,11 +35,12 @@ void Menu::afficherMenu()
         cout << "2 : Rechercher un trajet dans le catalogue" << endl;
         cout << "3 : Afficher le catalogue" << endl;
         cout << "4 : Supprimer un trajet" << endl;
+        cout << "5 : Sauvegarder le catalogue" << endl;
         cout << "Veuillez entrer votre choix (q pour quitter) : ";
         cin >> choix;
-        while (choix.compare("1") != 0 && choix.compare("2") != 0 && choix.compare("3") != 0 && choix.compare("4") != 0 && choix.compare("q") != 0)
+        while (choix.compare("1") != 0 && choix.compare("2") != 0 && choix.compare("3") != 0 && choix.compare("4") != 0 && choix.compare("5") != 0 && choix.compare("q") != 0)
         {
-            cout << "Choix incorrect. Choix possibles : 1, 2, 3, 4, q. Choix : ";
+            cout << "Choix incorrect. Choix possibles : 1, 2, 3, 4, 5, q. Choix : ";
             cin >> choix;
         }
         if (choix.compare("1") == 0)
@@ -56,6 +58,21 @@ void Menu::afficherMenu()
         else if (choix.compare("4") == 0)
         {
             supprimerTrajet();
+        }
+        else if(choix.compare("5") == 0)
+        {
+            ofstream fichier;
+            ifstream test;
+
+            test.open("example.txt");
+            if(test) 
+                cout << "Le fichier existe déjà." << endl;
+            else
+                cout << "Le fichier n'existe pas." << endl;
+                
+            fichier.open ("example.txt");
+            fichier << "Writing this to a file.\n";
+            fichier.close();
         }
 
     } while (choix.compare("q") != 0);

@@ -24,6 +24,11 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+int Catalogue::getTaille() const
+{
+    return liste->getTaille();
+}
+
 void Catalogue::ajouterTrajet(Trajet *t)
 {
     liste->ajouter(t);
@@ -122,11 +127,6 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
 void Catalogue::supprimerTrajet(int i)
 {
     liste->supprimerTrajet(i);
-}
-
-int Catalogue::getTaille()
-{
-    return liste->getTaille();
 }
 
 //-------------------------------------------- Constructeurs - destructeur

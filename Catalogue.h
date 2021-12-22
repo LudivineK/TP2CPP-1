@@ -13,6 +13,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajets.h"
 #include "Trajet.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -65,13 +66,13 @@ public:
     // Contrat :
     //  Aucun.
 
-    int rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite);
+    // int rechercheAux(const char *depart, const char *arrivee, ListeTrajets *dejaVisite);
     // Mode d'emploi :
     //  
     // Contrat :
     //
 
-    void rechercheAvancee(const char *depart, const char *arrivee);
+    // void rechercheAvancee(const char *depart, const char *arrivee);
     // Mode d'emploi :
     //  Effectue une recherche avancée sur le catalogue. Cette fois on recherche en profondeur également, 
     //  parmi les sous-trajet des trajets composés. `depart` est le lieu de départ, `arrivee` est le lieu d'arrivée. 
@@ -84,7 +85,7 @@ public:
     // Contrat :
     //  index doit être un entier positif ou nul.
 
-    int getTaille();
+    int getTaille() const;
     // Mode d'emploi :
     //  Donne le nombre de trajets qui composent le catalogue.
     // Contrat :
