@@ -79,7 +79,7 @@ public:
     // Contrat :
     //  Aucun.
 
-    void supprimerTrajet(int index);
+    void supprimerTrajet(int i);
     // Mode d'emploi :
     //  Supprime le trajet situé à la position passée en paramètre.
     // Contrat :
@@ -90,6 +90,8 @@ public:
     //  Donne le nombre de trajets qui composent le catalogue.
     // Contrat :
     //  Aucun.
+
+    ListeTrajets *getListe() const;
 
     //------------------------------------------------------------------ PRIVE
 

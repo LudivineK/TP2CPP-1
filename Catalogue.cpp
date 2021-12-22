@@ -13,8 +13,8 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <cstring>
 #include <string>
+
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 
@@ -23,11 +23,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-
-int Catalogue::getTaille() const
-{
-    return liste->getTaille();
-}
 
 void Catalogue::ajouterTrajet(Trajet *t)
 {
@@ -48,9 +43,6 @@ void Catalogue::afficher()
 
 void Catalogue::rechercheSimple(std::string depart, std::string arrivee)
 {
-    cout << "---------" << endl;
-    cout << "Recherche simple de trajets de " << depart << " vers " << arrivee << endl;
-
     int nb = 0;
     for (int i = 0; i < liste->getTaille(); i++)
     {
@@ -62,7 +54,6 @@ void Catalogue::rechercheSimple(std::string depart, std::string arrivee)
         }
     }
     cout << nb << " trajets trouvés dans le catalogue de " << depart << " vers " << arrivee << endl;
-    cout << "---------" << endl;
 }
 
 /*
@@ -124,9 +115,21 @@ int Catalogue::rechercheAux(const char *depart, const char *arrivee, ListeTrajet
     return nbTrajets;
 }*/
 
+
+
 void Catalogue::supprimerTrajet(int i)
 {
     liste->supprimerTrajet(i);
+}
+
+int Catalogue::getTaille() const
+{
+    return liste->getTaille();
+}
+
+ListeTrajets *Catalogue::getListe() const 
+{
+    return liste;
 }
 
 //-------------------------------------------- Constructeurs - destructeur

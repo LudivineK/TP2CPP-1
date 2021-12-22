@@ -38,25 +38,21 @@ public:
   
   void reallouer();
   // Mode d'emploi :
-  //  Donne la taille de la liste (nombre de trajets qui la composent).
+  //  Quand la taille du tableau est égale à sa taille maximum, on recréé un 
+  // tableau, on fait pointer les éléments de ce tableau vers les éléments
+  // du précédent tableau, et on supprime la structure de l'ancien tableau. 
   // Contrat :
   //  Aucun.
 
   int getTaille() const;
   // Mode d'emploi :
-  //  Donne la taille de la liste (nombre de trajets qui la composent).
+  //  Donne la taille courante du tableau (nombre de trajets qu'il contient).
   // Contrat :
   //  Aucun.
 
   int getTailleMax() const;
   // Mode d'emploi :
-  //  Donne la taille de la liste (nombre de trajets qui la composent).
-  // Contrat :
-  //  Aucun.
-
-  ListeTrajets *getListe() const;
-  // Mode d'emploi :
-  //  Donne la taille de la liste (nombre de trajets qui la composent).
+  //  Donne la taille maximum du tableau (nombre de trajets qu'elle PEUT contenir).
   // Contrat :
   //  Aucun.
 
@@ -76,14 +72,15 @@ public:
   // Mode d'emploi :
   //  Donne l'élément situé à la position i du tableau.
   // Contrat :
-  //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
+  //  Aucun.
 
   virtual void supprimerTrajet(int i);
   // Mode d'emploi :
-  //  Supprime le trajet situé à la position i du tableau.
+  //  Supprime le trajet situé à la position i du tableau. Déplace les éléments situés après
+  // i d'une case en arrière pour qu'il n'y ait pas de case vide.
   // Contrat :
   //  index doit être un entier positif ou nul, inférieur strictement à la taille de la liste.
-  
+
   //-------------------------------------------- Constructeurs - destructeur
 
   ListeTrajets();

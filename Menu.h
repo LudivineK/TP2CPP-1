@@ -82,6 +82,25 @@ public:
     //  Supprimer le ième trajet dans la liste des trajets. L'ordre est celui des entrées. 
     // Contrat :
     //  i est un entier supérieur ou égal à 1
+
+
+bool fichierExiste(std::string nomFichier);
+    // Mode d'emploi :
+    //  Vérifie si le nom du fichier existe déjà dans le répertoire courant. 
+    // Contrat :
+    // Aucun. 
+
+std::string gestionNomSauvegarde();
+
+void sauvegarderCatalogue();
+    // Mode d'emploi :
+    // On vérifie d'abord que le nom de la sauvegarde soit valide. Si le nom existe déjà,
+    // on propose à l'utilisateur de réécrire dessus, de changer le nom qu'il veut donner
+    // au fichier ou d'annuler l'opération. 
+    // Quand on a le bon nom de fichier, on lance la sauvegarde si l'utilisateur n'a pas
+    // annulé. 
+    // Contrat :
+    // Aucun. 
     
     //-------------------------------------------- Constructeurs - destructeur
 

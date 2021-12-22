@@ -13,7 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <cstring>
+#include <string>
 
 //------------------------------------------------------ Include personnel
 #include "ListeTrajets.h"
@@ -26,7 +26,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 void ListeTrajets::reallouer() {
-  Trajet** temp = new Trajet* [tailleMax * 2];
+  Trajet** temp = new Trajet* [this->getTailleMax() * 2];
 
   /* On fait pointer chaque case du tableau temp sur l'instance de Trajet
   pointée par tab au même indice */
@@ -36,7 +36,7 @@ void ListeTrajets::reallouer() {
 
 		// Définition du reste des pointeurs à NULL
 
-		for (int i = this->getTaille(); i < this->getTailleMax() * 2; i++) {
+		for (int i = this->getTaille(); i < tailleMax * 2; i++) {
 			temp[i] = NULL;
 		}
 
@@ -51,7 +51,7 @@ void ListeTrajets::reallouer() {
 		// On fait pointer l'attribut tab vers temp.
 
 		tab = temp;
-}
+} // fin reallouer
 
 bool ListeTrajets::ajouter(Trajet *unTrajet)
 {
@@ -87,7 +87,7 @@ void ListeTrajets::supprimerTrajet(int j)
 
   tab[taille - 1] = NULL;
   taille--;
-}
+} // fin supprimerTrajet
 
 /*void ListeTrajets::supprimerTrajetRecherche(uint index) 
 {
